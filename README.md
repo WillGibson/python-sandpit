@@ -2,4 +2,12 @@
 
 ## Setup
 
-TBC
+```shell
+poetry install
+```
+
+## Run tests
+
+```
+poetry run pytest
+```
