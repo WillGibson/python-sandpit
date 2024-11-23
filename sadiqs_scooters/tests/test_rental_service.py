@@ -9,7 +9,7 @@ from sadiqs_scooters.src.model.scooter import Scooter
 from sadiqs_scooters.src.rental_service import RentalService
 
 
-class RentalServiceTest:
+class TestRentalService:
     def test_person_can_rent_a_scooter(self):
         person: Person = Person()
         scooter: Scooter = Scooter()
