@@ -1,0 +1,38 @@
+import pytest
+
+from sadiqs_scooters.person import Person
+from sadiqs_scooters.rental_service import RentalService
+from sadiqs_scooters.scooter import Scooter
+from sadiqs_scooters.exceptions import PersonAlreadyRentingException, ScooterAlreadyRentedException
+
+
+class TestRentalService:
+    def test_person_can_rent_a_scooter(self):
+        person: Person = Person()
+        scooter: Scooter = Scooter()
+        rental_service = RentalService()
+
+        rental_service.start_rental(person, scooter)
+
+
+    def test_person_cannot_rent_more_than_one_scooter(self):
+        person: Person = Person()
+        scooter1: Scooter = Scooter()
+        scooter2: Scooter = Scooter()
+        rental_service = RentalService()
+        rental_service.start_rental(person, scooter1)
+
+        with pytest.raises(PersonAlreadyRentingException):
+            rental_service.start_rental(person, scooter2)
+
+
+    def test_scooter_cannot_be_rented_by_more_than_one_person(self):
+        person1: Person = Person()
+        person2: Person = Person()
+        scooter: Scooter = Scooter()
+        rental_service = RentalService()
+        rental_service.start_rental(person1, scooter)
+
+        with pytest.raises(ScooterAlreadyRentedException):
+            rental_service.start_rental(person2, scooter)
+
