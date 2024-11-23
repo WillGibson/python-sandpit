@@ -1,0 +1,2 @@
+class PersonAlreadyRentingException(Exception):
+    pass

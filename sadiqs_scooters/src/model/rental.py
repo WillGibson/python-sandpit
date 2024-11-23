@@ -1,5 +1,5 @@
-from sadiqs_scooters.person import Person
-from sadiqs_scooters.scooter import Scooter
+from sadiqs_scooters.src.model.person import Person
+from sadiqs_scooters.src.model.scooter import Scooter
 
 
 class Rental:

@@ -1,9 +1,12 @@
 import pytest
 
-from sadiqs_scooters.person import Person
-from sadiqs_scooters.rental_service import RentalService
-from sadiqs_scooters.scooter import Scooter
-from sadiqs_scooters.exceptions import PersonAlreadyRentingException, ScooterAlreadyRentedException
+from sadiqs_scooters.src.exceptions.person_already_renting_exception import \
+    PersonAlreadyRentingException
+from sadiqs_scooters.src.exceptions.scooter_already_rented_exception import \
+    ScooterAlreadyRentedException
+from sadiqs_scooters.src.model.person import Person
+from sadiqs_scooters.src.model.scooter import Scooter
+from sadiqs_scooters.src.rental_service import RentalService
 
 
 class TestRentalService:
