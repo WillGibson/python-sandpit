@@ -1,0 +1,2 @@
+class CannotCrossToExistingSideException(Exception):
+    pass
