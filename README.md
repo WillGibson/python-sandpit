@@ -1,5 +1,7 @@
 # Python sandpit
 
+Just me poking about with some katas and things.
+
 ## Setup
 
 ```shell
