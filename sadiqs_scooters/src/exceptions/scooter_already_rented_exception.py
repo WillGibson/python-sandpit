@@ -1,2 +1,0 @@
-class ScooterAlreadyRentedException(Exception):
-    pass

@@ -1,0 +1,2 @@
+class ThingAlreadyRentedException(Exception):
+    pass
