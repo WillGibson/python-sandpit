@@ -34,8 +34,6 @@ jobs:
 
       - name: Run pytest
         run: poetry run pytest --cov --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
-        env:
-          PYTHON_VERSION: ${{ matrix.python-version }}
 
       - name: Upload code coverage results to Codecov
         uses: codecov/codecov-action@v4
