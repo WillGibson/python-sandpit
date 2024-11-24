@@ -13,3 +13,7 @@ poetry install
 ```
 poetry run pytest
 ```
+
+## Metrics
+
+- [Codecov](https://app.codecov.io/gh/WillGibson/python-sandpit)
