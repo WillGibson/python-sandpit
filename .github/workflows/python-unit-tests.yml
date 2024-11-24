@@ -1,6 +1,9 @@
 name: Python unit tests
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: '30 3 6 * *'
 
 jobs:
   tests:
