@@ -5,7 +5,7 @@ from fox_goose_corn.src.model.boat import (
     CannotCrossToExistingSideException,
     TooManyCargoItemsException,
 )
-from fox_goose_corn.src.model.cargo_item import Fox, Goose, AbstractCargoItem
+from fox_goose_corn.src.model.cargo_item import Fox, Goose, AbstractCargoItem, Corn
 from fox_goose_corn.src.model.river import RiverSide
 
 
@@ -37,9 +37,10 @@ class TestBoat:
 
         assert boat.is_at(RiverSide.FARM_SIDE)
 
-    def test_boat_can_take_cargo(self):
+    @pytest.mark.parametrize("cargo_item_type", [Fox, Goose, Corn])
+    def test_boat_can_take_cargo(self, cargo_item_type):
         boat: Boat = Boat()
-        cargo_item: AbstractCargoItem = Fox()
+        cargo_item: AbstractCargoItem = cargo_item_type()
 
         boat.add_cargo(cargo_item)
 
