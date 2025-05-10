@@ -1,7 +1,9 @@
-from thing_rental.src.exceptions.person_already_renting_exception import \
-    PersonAlreadyRentingException
-from thing_rental.src.exceptions.thing_already_rented_exception import \
-    ThingAlreadyRentedException
+from thing_rental.src.exceptions.person_already_renting_exception import (
+    PersonAlreadyRentingException,
+)
+from thing_rental.src.exceptions.thing_already_rented_exception import (
+    ThingAlreadyRentedException,
+)
 from thing_rental.src.model.person import Person
 from thing_rental.src.model.rental import Rental
 from thing_rental.src.model.thing import Thing

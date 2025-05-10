@@ -1,7 +1,8 @@
 import pytest
 
-from fox_goose_corn.src.exceptions.cannot_cross_to_existing_side_exception import \
-    CannotCrossToExistingSideException
+from fox_goose_corn.src.exceptions.cannot_cross_to_existing_side_exception import (
+    CannotCrossToExistingSideException,
+)
 from fox_goose_corn.src.model.boat import Boat
 from fox_goose_corn.src.model.river import RiverSide
 
