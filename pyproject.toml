@@ -1,6 +1,5 @@
 [tool.poetry]
 name = "python-sandpit"
-version = "0.1.0"
 description = ""
 readme = "README.md"
 package-mode = false
@@ -9,5 +8,5 @@ package-mode = false
 python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.3"
-pytest-cov = "^6.0.0"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
