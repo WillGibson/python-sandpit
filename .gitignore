@@ -3,3 +3,6 @@
 __pycache__
 coverage.xml
 junit.xml
+
+# Ignore temporary experiements
+scratch*
