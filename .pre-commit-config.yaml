@@ -1,8 +1,8 @@
 repos:
   - repo: local
     hooks:
-      - id: unit-tests
-        name: unit tests
+      - id: run-unit-tests
+        name: run unit tests
         entry: bash -c 'poetry run pytest'
         language: system
         stages: [ "pre-commit" ]
@@ -11,7 +11,7 @@ repos:
     rev: 25.1.0
     hooks:
       - id: black
-        name: Format code
+        name: format code
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0

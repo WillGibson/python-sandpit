@@ -6,12 +6,11 @@ class Boat:
     _current_side: RiverSide = RiverSide.FARM_SIDE
     _cargo_item: AbstractCargoItem = None
 
-    def cross_from(self, start_from: RiverSide):
-        if start_from != self._current_side:
-            raise CannotCrossToExistingSideException
-
+    def cross_river(self):
         self._current_side = (
-            RiverSide.MARKET_SIDE if start_from is RiverSide.FARM_SIDE else RiverSide.FARM_SIDE
+            RiverSide.MARKET_SIDE
+            if self._current_side is RiverSide.FARM_SIDE
+            else RiverSide.FARM_SIDE
         )
 
         if self._cargo_item is not None:
@@ -28,10 +27,6 @@ class Boat:
             raise TooManyCargoItemsException
 
         self._cargo_item = cargo_item
-
-
-class CannotCrossToExistingSideException(Exception):
-    pass
 
 
 class InvalidCargoItemException(Exception):
