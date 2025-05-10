@@ -21,22 +21,20 @@ class Boat:
         return self._current_side is expected_side
 
     def add_cargo(self, cargo_item: AbstractCargoItem):
+        if not isinstance(cargo_item, AbstractCargoItem):
+            raise InvalidCargoItemException
+
         if self._cargo_item is not None:
             raise TooManyCargoItemsException
 
         self._cargo_item = cargo_item
 
-    def test_boat_can_take_cargo_across_river_from_farm_to_market(self):
-        boat: Boat = Boat()
-        cargo_item: AbstractCargoItem = Fox()
-
-        boat.add_cargo(cargo_item)
-        boat.cross_from(RiverSide.FARM_SIDE)
-
-        assert cargo_item.is_at(RiverSide.MARKET_SIDE)
-
 
 class CannotCrossToExistingSideException(Exception):
+    pass
+
+
+class InvalidCargoItemException(Exception):
     pass
 
 

@@ -4,6 +4,7 @@ from fox_goose_corn.src.model.boat import (
     Boat,
     CannotCrossToExistingSideException,
     TooManyCargoItemsException,
+    InvalidCargoItemException,
 )
 from fox_goose_corn.src.model.cargo_item import Fox, Goose, AbstractCargoItem, Corn
 from fox_goose_corn.src.model.river import RiverSide
@@ -44,6 +45,13 @@ class TestBoat:
 
         boat.add_cargo(cargo_item)
 
+    def test_boat_can_only_take_expected_cargo_types(self):
+        boat: Boat = Boat()
+        cargo_item = Boat()
+
+        with pytest.raises(InvalidCargoItemException):
+            boat.add_cargo(cargo_item)
+
     def test_boat_cannot_take_more_than_one_cargo_item(self):
         boat: Boat = Boat()
         cargo_item_1: AbstractCargoItem = Fox()
@@ -52,3 +60,12 @@ class TestBoat:
 
         with pytest.raises(TooManyCargoItemsException):
             boat.add_cargo(cargo_item_2)
+
+    def test_boat_can_take_cargo_across_river_from_farm_to_market(self):
+        boat: Boat = Boat()
+        cargo_item: AbstractCargoItem = Fox()
+
+        boat.add_cargo(cargo_item)
+        boat.cross_from(RiverSide.FARM_SIDE)
+
+        assert cargo_item.is_at(RiverSide.MARKET_SIDE)
