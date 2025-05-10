@@ -63,3 +63,12 @@ class TestBoat:
         boat.cross_river()
 
         assert cargo_item.is_at(RiverSide.MARKET_SIDE)
+
+    def test_boat_is_empty_after_crossing_with_a_cargo_item(self):
+        boat = Boat()
+        cargo_item_1 = Fox()
+        cargo_item_2 = Goose()
+        boat.add_cargo(cargo_item_1)
+        boat.cross_river()
+
+        boat.add_cargo(cargo_item_2)
