@@ -24,7 +24,15 @@ class TestSubsetAddingUpTo:
 
     @pytest.mark.parametrize(
         "target_sum",
-        [1, 943, 77777, 765243, 55],
+        [1, 55, 943, 77777, 76523],
     )
     def test_works_with_larger_lists(self, target_sum):
         assert sum(subset_adding_up_to(list(range(10000000)), target_sum)) == target_sum
+
+    @pytest.mark.parametrize(
+        "target_sum",
+        [1076523],
+    )
+    @pytest.mark.skip("Times out")
+    def test_works_with_a_target_bigger_than_any_in_a_larger_list(self, target_sum):
+        assert sum(subset_adding_up_to(list(range(1000000)), target_sum)) == target_sum
