@@ -44,7 +44,7 @@ class TestCrossingManager:
             crossing.cross_with(corn)
 
     @pytest.mark.skip
-    # Todo: Need to deal with wthere the farmer is still there to supervise the items or not
+    # Todo: Need to deal with whether the farmer is still there to supervise the items or not
     def test_corn_can_be_left_market_side_with_fox(self):
         crossing, fox, goose, corn = self._setup()
         crossing.cross_with(goose)
