@@ -4,6 +4,7 @@ from typing import Optional
 
 
 def subset_adding_up_to(full_set: list[int], target_sum: int) -> Optional[list[int]]:
+    full_set.sort(reverse=True)
     output: list[int] = []
     sub_total = 0
     for value in full_set:
@@ -12,9 +13,8 @@ def subset_adding_up_to(full_set: list[int], target_sum: int) -> Optional[list[i
             sub_total += value
             output.append(value)
             if temp_value == target_sum:
-                break
+                output.sort()
+                return output
 
-    if sub_total == target_sum:
-        return output
-    else:
-        return None
+    # Not able to find subset adding uop to target
+    return None
