@@ -1,20 +1,18 @@
+from itertools import combinations
 from typing import Optional
 
-# Todo: Look at prefix sums
 
+def subset_adding_up_to(
+    full_set: list[int], target_sum: int, number_of_elements: int = 1
+) -> Optional[list[int]]:
+    full_set.sort()
+    for combination in combinations(full_set, number_of_elements):
+        if sum(combination) == target_sum:
+            return list(combination)
 
-def subset_adding_up_to(full_set: list[int], target_sum: int) -> Optional[list[int]]:
-    full_set.sort(reverse=True)
-    output: list[int] = []
-    sub_total = 0
-    for value in full_set:
-        temp_value = sub_total + value
-        if temp_value <= target_sum:
-            sub_total += value
-            output.append(value)
-            if temp_value == target_sum:
-                output.sort()
-                return output
-
-    # Not able to find subset adding uop to target
-    return None
+    if number_of_elements < len(full_set):
+        # Try again allowing one more element
+        return subset_adding_up_to(full_set, target_sum, number_of_elements + 1)
+    else:
+        # Not able to find a subset adding up to target
+        return None
