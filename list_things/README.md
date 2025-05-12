@@ -6,4 +6,3 @@ Requirements:
   - Takes list of numbers and a target number.
   - Returns a list of numbers that add up to the target number.
   - Should return None if unable to find subset adding up to target number.
-  - Assumed that returning list in ascending order is acceptable

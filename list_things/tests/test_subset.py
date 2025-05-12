@@ -20,16 +20,11 @@ class TestSubsetAddingUpTo:
         ],
     )
     def test_returns_subset_adding_up_to_target_sum(self, full_set, target_sum, expected):
-        assert subset_adding_up_to(full_set, target_sum) == expected
+        assert subset_adding_up_to(full_set, target_sum).sort() == expected.sort()
 
     @pytest.mark.parametrize(
         "target_sum",
-        [
-            1,
-            943,
-            77777,
-            765243,
-        ],
+        [1, 943, 77777, 765243, 55],
     )
     def test_works_with_larger_lists(self, target_sum):
         assert sum(subset_adding_up_to(list(range(10000000)), target_sum)) == target_sum

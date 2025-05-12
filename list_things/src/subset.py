@@ -5,7 +5,6 @@ from typing import Optional
 def subset_adding_up_to(
     full_set: list[int], target_sum: int, number_of_elements: int = 1
 ) -> Optional[list[int]]:
-    full_set.sort()
     for combination in combinations(full_set, number_of_elements):
         if sum(combination) == target_sum:
             return list(combination)
