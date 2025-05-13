@@ -1,11 +1,11 @@
 import pytest
 
-from list_things.src.subset import subset_adding_up_to
+from list_things.src.scattered_subset import scattered_subset_adding_up_to
 
 
-class TestSubsetAddingUpTo:
+class TestScatteredSubsetAddingUpTo:
     def test_sublist_with_unnattainable_target_returns_none(self):
-        assert subset_adding_up_to([4, 2, 1], 8) is None
+        assert scattered_subset_adding_up_to([4, 2, 1], 8) is None
 
     @pytest.mark.parametrize(
         "full_set,target_sum,expected",
@@ -20,7 +20,7 @@ class TestSubsetAddingUpTo:
         ],
     )
     def test_returns_subset_adding_up_to_target_sum(self, full_set, target_sum, expected):
-        assert subset_adding_up_to(full_set, target_sum).sort() == expected.sort()
+        assert scattered_subset_adding_up_to(full_set, target_sum).sort() == expected.sort()
 
     @pytest.mark.parametrize(
         "target_sum",
@@ -34,7 +34,7 @@ class TestSubsetAddingUpTo:
         ],
     )
     def test_works_with_larger_lists(self, target_sum):
-        assert sum(subset_adding_up_to(list(range(1000)), target_sum)) == target_sum
+        assert sum(scattered_subset_adding_up_to(list(range(1000)), target_sum)) == target_sum
 
     @pytest.mark.parametrize(
         "target_sum",
@@ -42,4 +42,4 @@ class TestSubsetAddingUpTo:
     )
     @pytest.mark.skip("Times out")
     def test_works_with_a_target_bigger_than_any_element_in_a_much_larger_list(self, target_sum):
-        assert sum(subset_adding_up_to(list(range(1000000)), target_sum)) == target_sum
+        assert sum(scattered_subset_adding_up_to(list(range(1000000)), target_sum)) == target_sum
