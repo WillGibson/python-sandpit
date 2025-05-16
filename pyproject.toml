@@ -6,11 +6,24 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
+typeguard = "^4.4.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 pre-commit = "^4.2.0"
+mutmut = { git = "git@github.com:boxed/mutmut.git", branch = "main" }
 
 [tool.black]
 line-length = 100
+
+[tool.mutmut]
+paths_to_mutate = [
+    "_starter_kit/src/",
+    "fox_goose_corn/src/",
+    "list_things/src/",
+    "thing_rental/src/"
+]
+
+[tool.pytest.ini_options]
+addopts = "--ignore mutants"

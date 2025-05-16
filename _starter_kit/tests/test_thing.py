@@ -1,6 +1,5 @@
 import pytest
-
-from _starter_kit.src.model.thing import Thing, ThingCantActException
+from _starter_kit.src.thing import Thing, ThingCantActException
 
 
 class TestThing:
