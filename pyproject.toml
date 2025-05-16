@@ -12,7 +12,8 @@ typeguard = "^4.4.2"
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 pre-commit = "^4.2.0"
-mutmut = { git = "git@github.com:boxed/mutmut.git", branch = "main" }
+# Todo: Come back to this, it's messing up GitHub Actions
+# mutmut = { git = "git@github.com:boxed/mutmut.git", branch = "main" }
 
 [tool.black]
 line-length = 100
