@@ -1,5 +1,5 @@
-from thing_rental.src.model.person import Person
-from thing_rental.src.model.thing import Thing
+from thing_rental.model.person import Person
+from thing_rental.model.thing import Thing
 
 
 class Rental:
