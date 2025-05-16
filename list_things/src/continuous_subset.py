@@ -1,7 +1,10 @@
 from itertools import accumulate
 from typing import Optional
 
+from typeguard import typechecked
 
+
+@typechecked
 def continuous_subset_adding_up_to(full_set: list[int], target_sum: int) -> Optional[list[int]]:
     full_set.sort()  # Might improve performance on more random lists if the values are in ascending order
 

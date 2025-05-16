@@ -1,3 +1,5 @@
+from typeguard import typechecked
+
 from thing_rental.src.exceptions.person_already_renting_exception import (
     PersonAlreadyRentingException,
 )
@@ -9,6 +11,7 @@ from thing_rental.src.model.rental import Rental
 from thing_rental.src.model.thing import Thing
 
 
+@typechecked
 class RentalService:
     current_rentals: list[Rental] = []
 

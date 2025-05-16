@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fox_goose_corn.src.model.cargo_item import AbstractCargoItem, Fox
+from fox_goose_corn.src.model.cargo_item import AbstractCargoItem
 from fox_goose_corn.src.model.river import RiverSide
 
 

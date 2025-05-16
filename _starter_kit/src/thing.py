@@ -1,3 +1,7 @@
+from typeguard import typechecked
+
+
+@typechecked
 class Thing:
     _can_act: bool
     _has_acted: bool = False
@@ -15,5 +19,6 @@ class Thing:
         return self._has_acted
 
 
+@typechecked
 class ThingCantActException(Exception):
     pass

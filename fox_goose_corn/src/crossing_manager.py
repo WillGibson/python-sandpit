@@ -1,4 +1,4 @@
-from typing import Optional
+from typeguard import typechecked
 
 from fox_goose_corn.src.model.boat import Boat
 from fox_goose_corn.src.model.cargo_item import (
@@ -10,6 +10,7 @@ from fox_goose_corn.src.model.cargo_item import (
 )
 
 
+@typechecked
 class CrossingManager:
     def __init__(self, boat: Boat, fox: Fox, goose: Goose, corn: Corn):
         self._corn = corn

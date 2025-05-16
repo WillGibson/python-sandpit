@@ -1,7 +1,10 @@
 from itertools import combinations
 from typing import Optional
 
+from typeguard import typechecked
 
+
+@typechecked
 def scattered_subset_adding_up_to(
     full_set: list[int],
     target_sum: int,
