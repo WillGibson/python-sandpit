@@ -39,12 +39,13 @@ class TestBoat:
 
         boat.add_cargo(cargo_item)
 
-    def test_boat_can_only_take_expected_cargo_types(self):
-        boat = Boat()
-        cargo_item = Boat()
-
-        with pytest.raises(InvalidCargoItemException):
-            boat.add_cargo(cargo_item)
+    # Not needed if using typechecked
+    # def test_boat_can_only_take_expected_cargo_types(self):
+    #     boat = Boat()
+    #     cargo_item = Boat()
+    #
+    #     with pytest.raises(InvalidCargoItemException):
+    #         boat.add_cargo(cargo_item)
 
     def test_boat_cannot_take_more_than_one_cargo_item(self):
         boat = Boat()

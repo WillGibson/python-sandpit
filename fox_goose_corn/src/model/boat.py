@@ -1,9 +1,12 @@
 from typing import Optional
 
+from typeguard import typechecked
+
 from fox_goose_corn.src.model.cargo_item import AbstractCargoItem
 from fox_goose_corn.src.model.river import RiverSide
 
 
+@typechecked
 class Boat:
     _current_side: RiverSide = RiverSide.FARM_SIDE
     _cargo_item: Optional[AbstractCargoItem] = None
