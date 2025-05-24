@@ -17,7 +17,8 @@ poetry run pytest
 ## Metrics
 
 - [Codecov](https://app.codecov.io/gh/WillGibson/python-sandpit)
--
+- [CodecovXX](https://app.codXXecov.io/gh/WillGibson/python-sandpit)
+
 ## Mutation testing
 
 Using [mutmut](https://github.com/boxed/mutmut) as a tool to help identify gaps in our unit test coverage.
