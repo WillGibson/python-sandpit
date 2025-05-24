@@ -18,6 +18,8 @@ poetry run pytest
 
 - [Codecov](https://app.codecov.io/gh/WillGibson/python-sandpit)
 - [CodecovXX](https://app.codXXecov.io/gh/WillGibson/python-sandpit)
+- [good heading](#python-sandpit)
+- [bad heading](#pythonXX-sandpit)
 
 ## Mutation testing
 
