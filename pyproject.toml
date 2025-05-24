@@ -12,7 +12,7 @@ typeguard = "^4.4.2"
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 pre-commit = "^4.2.0"
-mutmut = "^3.3.0"
+mutmut = {url = "https://github.com/WillGibson/mutmut/archive/refs/heads/allow-typechecked-spike.zip"}
 
 [tool.black]
 line-length = 100
@@ -27,6 +27,7 @@ paths_to_mutate = [
 do_not_mutate = [
     "**/tests/*"
 ]
+debug = true
 
 [tool.pytest.ini_options]
 addopts = "--ignore ./mutants"

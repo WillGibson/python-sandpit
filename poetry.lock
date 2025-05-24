@@ -332,8 +332,7 @@ optional = false
 python-versions = "*"
 groups = ["dev"]
 files = [
-    {file = "mutmut-3.3.0-py3-none-any.whl", hash = "sha256:b6665a1d56f7c01184006d12488c10db3442932c20ba1b74a554b8f936e8c616"},
-    {file = "mutmut-3.3.0.tar.gz", hash = "sha256:48f0f89fbd92ffb7d8782002184ff86e27be51c20ad1b73e062e8e93198a3536"},
+    {file = "allow-typechecked-spike.zip", hash = "sha256:a3c06dbcb2502640fd066217112964397b3fe5284900ff71b1b033f204468f1c"},
 ]
 
 [package.dependencies]
@@ -343,6 +342,10 @@ pytest = "*"
 setproctitle = "*"
 textual = "*"
 toml = {version = ">=0.10.2", markers = "python_version < \"3.11\""}
+
+[package.source]
+type = "url"
+url = "https://github.com/WillGibson/mutmut/archive/refs/heads/allow-typechecked-spike.zip"
 
 [[package]]
 name = "nodeenv"
@@ -817,4 +820,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "8dd8dc286da116ebf79cffc557262121bf507739b95a67e5bce1b2fc3a55a8b0"
+content-hash = "6ac030c11e5c0151b909ddb8c112a6c63debd41c68cef2c829870afa25d38b06"
