@@ -16,4 +16,4 @@ jobs:
 
       - uses: tcort/github-action-markdown-link-check@v1
         with:
-          use-quiet-mode: 'yes'
+          use-quiet-mode: 'no'
