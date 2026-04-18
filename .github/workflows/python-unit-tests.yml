@@ -40,10 +40,11 @@ jobs:
         run: poetry run pytest --cov --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
 
       - name: Upload code coverage results to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: ${{ !cancelled() }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          report_type: test_results
           fail_ci_if_error: true
 
       - name: Upload test analysis results to Codecov
