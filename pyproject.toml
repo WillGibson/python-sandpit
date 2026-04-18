@@ -9,7 +9,7 @@ python = "^3.10"
 typeguard = "^4.4.2"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.5"
+pytest = ">=8.3.5,<10.0.0"
 pytest-cov = "^6.1.1"
 pre-commit = "^4.2.0"
 mutmut = "^3.3.0"
