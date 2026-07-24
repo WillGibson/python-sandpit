@@ -6,6 +6,7 @@ Just me poking about with some katas and things.
 
 ```shell
 poetry install
+poetry run pre-commit install
 ```
 
 ## Run tests
