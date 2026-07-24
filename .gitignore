@@ -1,4 +1,5 @@
 .coverage
+.envrc
 .idea
 __pycache__
 coverage.xml
