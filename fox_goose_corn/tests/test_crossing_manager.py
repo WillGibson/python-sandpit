@@ -5,6 +5,7 @@ from fox_goose_corn.src.model.boat import (
     Boat,
 )
 from fox_goose_corn.src.model.cargo_item import Corn, Fox, Goose, CargoEatingCargoException
+from fox_goose_corn.src.model.river import RiverSide
 
 
 class TestCrossingManager:
@@ -53,6 +54,22 @@ class TestCrossingManager:
         crossing.cross_with(goose)
 
         crossing.cross_with(fox)
+
+    # The whole journey
+    def test_all_cargo_items_can_be_taken_to_market(self):
+        crossing, fox, goose, corn = self._setup()
+
+        crossing.cross_with(goose)
+        crossing.cross_empty()
+        crossing.cross_with(corn)
+        crossing.cross_with(goose)
+        crossing.cross_with(fox)
+        crossing.cross_empty()
+        crossing.cross_with(goose)
+
+        assert fox.is_at(RiverSide.MARKET_SIDE)
+        assert goose.is_at(RiverSide.MARKET_SIDE)
+        assert corn.is_at(RiverSide.MARKET_SIDE)
 
     @staticmethod
     def _setup():
