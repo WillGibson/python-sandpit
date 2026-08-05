@@ -8,6 +8,7 @@ from fox_goose_corn.src.model.cargo_item import (
     Corn,
     CargoEatingCargoException,
 )
+from fox_goose_corn.src.model.river import RiverSide
 
 
 @typechecked
@@ -25,7 +26,25 @@ class CrossingManager:
 
     def cross_empty(self) -> None:
         self._boat.cross_river()
+        self._check_the_cargo_is_safe()
 
     def _check_the_cargo_is_safe(self) -> None:
-        if self._fox.is_on_same_side_as(self._goose) or self._goose.is_on_same_side_as(self._corn):
+        unattended_side = self._side_the_boat_is_not_at()
+
+        if self._are_left_alone_together(
+            self._fox, self._goose, unattended_side
+        ) or self._are_left_alone_together(self._goose, self._corn, unattended_side):
             raise CargoEatingCargoException
+
+    def _side_the_boat_is_not_at(self) -> RiverSide:
+        return (
+            RiverSide.MARKET_SIDE if self._boat.is_at(RiverSide.FARM_SIDE) else RiverSide.FARM_SIDE
+        )
+
+    @staticmethod
+    def _are_left_alone_together(
+        one_cargo_item: AbstractCargoItem,
+        another_cargo_item: AbstractCargoItem,
+        unattended_side: RiverSide,
+    ) -> bool:
+        return one_cargo_item.is_at(unattended_side) and another_cargo_item.is_at(unattended_side)
