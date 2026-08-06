@@ -31,6 +31,9 @@ class Boat:
         if self._cargo_item is not None:
             raise TooManyCargoItemsException
 
+        if not cargo_item.is_at(self._current_side):
+            raise CargoItemNotAtBoatException
+
         self._cargo_item = cargo_item
 
     def _unload_cargo_item(self):
@@ -43,4 +46,8 @@ class InvalidCargoItemException(Exception):
 
 
 class TooManyCargoItemsException(Exception):
+    pass
+
+
+class CargoItemNotAtBoatException(Exception):
     pass

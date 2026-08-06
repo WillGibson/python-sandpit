@@ -4,6 +4,7 @@ from fox_goose_corn.src.model.boat import (
     Boat,
     TooManyCargoItemsException,
     InvalidCargoItemException,
+    CargoItemNotAtBoatException,
 )
 from fox_goose_corn.src.model.cargo_item import Fox, Goose, Corn
 from fox_goose_corn.src.model.river import RiverSide
@@ -56,6 +57,25 @@ class TestBoat:
         with pytest.raises(TooManyCargoItemsException):
             boat.add_cargo(cargo_item_2)
 
+    def test_boat_cannot_take_cargo_that_is_on_the_opposite_side(self):
+        boat = Boat()
+        cargo_item = Fox()
+        boat.cross_river()
+
+        with pytest.raises(CargoItemNotAtBoatException):
+            boat.add_cargo(cargo_item)
+
+    def test_boat_is_still_empty_after_refusing_cargo_from_the_opposite_side(self):
+        boat = Boat()
+        fox = Fox()
+        goose = Goose()
+        goose.unload_cargo_item_at(RiverSide.MARKET_SIDE)
+        boat.cross_river()
+        with pytest.raises(CargoItemNotAtBoatException):
+            boat.add_cargo(fox)
+
+        boat.add_cargo(goose)
+
     def test_boat_can_take_cargo_across_river_from_farm_to_market(self):
         boat = Boat()
         cargo_item = Fox()
@@ -69,6 +89,7 @@ class TestBoat:
         boat = Boat()
         cargo_item_1 = Fox()
         cargo_item_2 = Goose()
+        cargo_item_2.unload_cargo_item_at(RiverSide.MARKET_SIDE)
         boat.add_cargo(cargo_item_1)
         boat.cross_river()
 
