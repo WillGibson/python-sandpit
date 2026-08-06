@@ -1,5 +1,6 @@
 .claude
 .coverage
+.dev
 .envrc
 .idea
 __pycache__

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from typeguard import typechecked
 
 from fox_goose_corn.src.model.boat import Boat
@@ -20,31 +22,45 @@ class CrossingManager:
         self._boat = boat
 
     def cross_with(self, cargo_item: AbstractCargoItem) -> None:
+        self._cargo_left_behind_wont_be_eaten(carried_cargo_item=cargo_item)
         self._boat.add_cargo(cargo_item)
         self._boat.cross_river()
-        self._check_the_cargo_is_safe()
 
     def cross_empty(self) -> None:
+        self._cargo_left_behind_wont_be_eaten(carried_cargo_item=None)
         self._boat.cross_river()
-        self._check_the_cargo_is_safe()
 
-    def _check_the_cargo_is_safe(self) -> None:
-        unattended_side = self._side_the_boat_is_not_at()
+    def _cargo_left_behind_wont_be_eaten(
+        self, carried_cargo_item: Optional[AbstractCargoItem]
+    ) -> None:
+        pairs_that_cannot_be_left_alone = [
+            (self._fox, self._goose),
+            (self._goose, self._corn),
+        ]
 
-        if self._are_left_alone_together(
-            self._fox, self._goose, unattended_side
-        ) or self._are_left_alone_together(self._goose, self._corn, unattended_side):
-            raise CargoEatingCargoException
+        for one_cargo_item, another_cargo_item in pairs_that_cannot_be_left_alone:
+            if self._would_be_left_alone_together(
+                one_cargo_item, another_cargo_item, carried_cargo_item, self._boat.current_side
+            ):
+                raise CargoEatingCargoException
 
-    def _side_the_boat_is_not_at(self) -> RiverSide:
-        return (
-            RiverSide.MARKET_SIDE if self._boat.is_at(RiverSide.FARM_SIDE) else RiverSide.FARM_SIDE
+    @staticmethod
+    def _would_be_left_alone_together(
+        one_cargo_item: AbstractCargoItem,
+        another_cargo_item: AbstractCargoItem,
+        carried_cargo_item: Optional[AbstractCargoItem],
+        unattended_side: RiverSide,
+    ) -> bool:
+        return CrossingManager._would_remain_unattended(
+            one_cargo_item, carried_cargo_item, unattended_side
+        ) and CrossingManager._would_remain_unattended(
+            another_cargo_item, carried_cargo_item, unattended_side
         )
 
     @staticmethod
-    def _are_left_alone_together(
-        one_cargo_item: AbstractCargoItem,
-        another_cargo_item: AbstractCargoItem,
+    def _would_remain_unattended(
+        cargo_item: AbstractCargoItem,
+        carried_cargo_item: Optional[AbstractCargoItem],
         unattended_side: RiverSide,
     ) -> bool:
-        return one_cargo_item.is_at(unattended_side) and another_cargo_item.is_at(unattended_side)
+        return cargo_item is not carried_cargo_item and cargo_item.is_at(unattended_side)

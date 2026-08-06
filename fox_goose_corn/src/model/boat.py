@@ -21,6 +21,10 @@ class Boat:
         if self._cargo_item is not None:
             self._unload_cargo_item()
 
+    @property
+    def current_side(self) -> RiverSide:
+        return self._current_side
+
     def is_at(self, expected_side: RiverSide):
         return self._current_side is expected_side
 

@@ -9,7 +9,6 @@ from fox_goose_corn.src.model.river import RiverSide
 
 
 class TestCrossingManager:
-    # Farm side
     def test_fox_cannot_be_left_farm_side_with_goose(self):
         crossing, fox, goose, corn = self._setup()
 
@@ -27,7 +26,6 @@ class TestCrossingManager:
 
         crossing.cross_with(goose)
 
-    # Market side
     def test_fox_cannot_be_left_market_side_with_goose(self):
         crossing, fox, goose, corn = self._setup()
         crossing.cross_with(goose)
@@ -55,7 +53,25 @@ class TestCrossingManager:
 
         crossing.cross_with(fox)
 
-    # The whole journey
+    def test_a_refused_crossing_moves_nothing(self):
+        crossing, fox, goose, corn = self._setup()
+
+        with pytest.raises(CargoEatingCargoException):
+            crossing.cross_with(corn)
+
+        assert fox.is_at(RiverSide.FARM_SIDE)
+        assert goose.is_at(RiverSide.FARM_SIDE)
+        assert corn.is_at(RiverSide.FARM_SIDE)
+
+    def test_a_legal_crossing_still_works_after_a_refused_one(self):
+        crossing, fox, goose, corn = self._setup()
+        with pytest.raises(CargoEatingCargoException):
+            crossing.cross_with(corn)
+
+        crossing.cross_with(goose)
+
+        assert goose.is_at(RiverSide.MARKET_SIDE)
+
     def test_all_cargo_items_can_be_taken_to_market(self):
         crossing, fox, goose, corn = self._setup()
 
