@@ -20,21 +20,17 @@ class AbstractCargoItem(ABC):
         return self._current_side == other_cargo_item._current_side
 
 
-@typechecked
 class Fox(AbstractCargoItem):
     pass
 
 
-@typechecked
 class Goose(AbstractCargoItem):
     pass
 
 
-@typechecked
 class Corn(AbstractCargoItem):
     pass
 
 
-@typechecked
 class CargoEatingCargoException(Exception):
     pass

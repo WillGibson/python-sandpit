@@ -1,9 +1,6 @@
 from enum import Enum
 
-from typeguard import typechecked
 
-
-@typechecked
 class RiverSide(Enum):
     FARM_SIDE = "farm-side"
     MARKET_SIDE = "market-side"
