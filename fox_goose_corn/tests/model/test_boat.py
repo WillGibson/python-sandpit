@@ -17,6 +17,14 @@ class TestBoat:
         assert boat.is_at(RiverSide.FARM_SIDE)
         assert not boat.is_at(RiverSide.MARKET_SIDE)
 
+    def test_each_boat_has_its_own_position(self):
+        boat = Boat()
+        another_boat = Boat()
+
+        boat.cross_river()
+
+        assert another_boat.is_at(RiverSide.FARM_SIDE)
+
     def test_boat_can_cross_river_from_farm_to_market(self):
         boat = Boat()
 

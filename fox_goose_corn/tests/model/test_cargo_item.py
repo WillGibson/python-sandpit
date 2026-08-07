@@ -9,6 +9,14 @@ class TestCargoItem:
         assert cargo_item.is_at(RiverSide.FARM_SIDE)
         assert not cargo_item.is_at(RiverSide.MARKET_SIDE)
 
+    def test_each_cargo_item_has_its_own_position(self):
+        cargo_item = Fox()
+        another_cargo_item = Fox()
+
+        cargo_item.unload_cargo_item_at(RiverSide.MARKET_SIDE)
+
+        assert another_cargo_item.is_at(RiverSide.FARM_SIDE)
+
     def test_unload_cargo_item_at(self):
         cargo_item = Fox()
 

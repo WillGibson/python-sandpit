@@ -8,15 +8,12 @@ from fox_goose_corn.src.model.river import RiverSide
 
 @typechecked
 class Boat:
-    _current_side: RiverSide = RiverSide.FARM_SIDE
-    _cargo_item: Optional[AbstractCargoItem] = None
+    def __init__(self) -> None:
+        self._current_side: RiverSide = RiverSide.FARM_SIDE
+        self._cargo_item: Optional[AbstractCargoItem] = None
 
     def cross_river(self):
-        self._current_side = (
-            RiverSide.MARKET_SIDE
-            if self._current_side is RiverSide.FARM_SIDE
-            else RiverSide.FARM_SIDE
-        )
+        self._current_side = self._current_side.opposite_side()
 
         if self._cargo_item is not None:
             self._unload_cargo_item()

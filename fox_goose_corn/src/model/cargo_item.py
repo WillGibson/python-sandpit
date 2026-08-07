@@ -7,7 +7,8 @@ from fox_goose_corn.src.model.river import RiverSide
 
 @typechecked
 class AbstractCargoItem(ABC):
-    _current_side: RiverSide = RiverSide.FARM_SIDE
+    def __init__(self) -> None:
+        self._current_side: RiverSide = RiverSide.FARM_SIDE
 
     def is_at(self, expected_side: RiverSide) -> bool:
         return self._current_side is expected_side
