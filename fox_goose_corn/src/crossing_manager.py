@@ -3,19 +3,18 @@ from typing import Optional
 from fox_goose_corn.src.model.boat import Boat
 from fox_goose_corn.src.model.cargo_item import (
     AbstractCargoItem,
-    Fox,
-    Goose,
-    Corn,
     CargoEatingCargoException,
 )
 from fox_goose_corn.src.model.river import RiverSide
 
 
 class CrossingManager:
-    def __init__(self, boat: Boat, fox: Fox, goose: Goose, corn: Corn):
-        self._corn = corn
-        self._goose = goose
-        self._fox = fox
+    def __init__(
+        self,
+        boat: Boat,
+        pairs_that_cannot_be_left_alone: list[tuple[AbstractCargoItem, AbstractCargoItem]],
+    ):
+        self._pairs_that_cannot_be_left_alone = pairs_that_cannot_be_left_alone
         self._boat = boat
 
     def cross_with(self, cargo_item: AbstractCargoItem) -> None:
@@ -30,12 +29,7 @@ class CrossingManager:
     def _cargo_left_behind_wont_be_eaten(
         self, carried_cargo_item: Optional[AbstractCargoItem]
     ) -> None:
-        pairs_that_cannot_be_left_alone = [
-            (self._fox, self._goose),
-            (self._goose, self._corn),
-        ]
-
-        for one_cargo_item, another_cargo_item in pairs_that_cannot_be_left_alone:
+        for one_cargo_item, another_cargo_item in self._pairs_that_cannot_be_left_alone:
             if self._would_be_left_alone_together(
                 one_cargo_item, another_cargo_item, carried_cargo_item, self._boat.current_side
             ):

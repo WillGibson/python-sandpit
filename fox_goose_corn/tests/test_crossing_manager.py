@@ -95,11 +95,20 @@ class TestCrossingManager:
         assert goose.is_at(RiverSide.MARKET_SIDE)
         assert corn.is_at(RiverSide.MARKET_SIDE)
 
+    def test_the_pairs_given_are_the_pairs_enforced(self):
+        fox = Fox()
+        goose = Goose()
+        corn = Corn()
+        crossing = CrossingManager(Boat(), [(fox, corn)])
+
+        with pytest.raises(CargoEatingCargoException):
+            crossing.cross_with(goose)
+
     @staticmethod
     def _setup():
         boat = Boat()
         fox = Fox()
         goose = Goose()
         corn = Corn()
-        crossing = CrossingManager(boat, fox, goose, corn)
+        crossing = CrossingManager(boat, [(fox, goose), (goose, corn)])
         return crossing, fox, goose, corn
