@@ -26,6 +26,10 @@ class TestCrossingManager:
 
         crossing.cross_with(goose)
 
+        assert goose.is_at(RiverSide.MARKET_SIDE)
+        assert fox.is_at(RiverSide.FARM_SIDE)
+        assert corn.is_at(RiverSide.FARM_SIDE)
+
     def test_fox_cannot_be_left_market_side_with_goose(self):
         crossing, fox, goose, corn = self._setup()
         crossing.cross_with(goose)
@@ -52,6 +56,10 @@ class TestCrossingManager:
         crossing.cross_with(goose)
 
         crossing.cross_with(fox)
+
+        assert fox.is_at(RiverSide.MARKET_SIDE)
+        assert corn.is_at(RiverSide.MARKET_SIDE)
+        assert goose.is_at(RiverSide.FARM_SIDE)
 
     def test_a_refused_crossing_moves_nothing(self):
         crossing, fox, goose, corn = self._setup()

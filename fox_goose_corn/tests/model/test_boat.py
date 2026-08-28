@@ -41,13 +41,6 @@ class TestBoat:
 
         assert boat.is_at(RiverSide.FARM_SIDE)
 
-    @pytest.mark.parametrize("cargo_item_type", [Fox, Goose, Corn])
-    def test_boat_can_take_cargo(self, cargo_item_type):
-        boat = Boat()
-        cargo_item = cargo_item_type()
-
-        boat.add_cargo(cargo_item)
-
     def test_boat_can_only_take_expected_cargo_types(self):
         boat = Boat()
         not_a_cargo_item = Boat()
@@ -82,10 +75,14 @@ class TestBoat:
             boat.add_cargo(fox)
 
         boat.add_cargo(goose)
+        boat.cross_river()
 
-    def test_boat_can_take_cargo_across_river_from_farm_to_market(self):
+        assert goose.is_at(RiverSide.FARM_SIDE)
+
+    @pytest.mark.parametrize("cargo_item_type", [Fox, Goose, Corn])
+    def test_boat_can_take_cargo_across_river_from_farm_to_market(self, cargo_item_type):
         boat = Boat()
-        cargo_item = Fox()
+        cargo_item = cargo_item_type()
 
         boat.add_cargo(cargo_item)
         boat.cross_river()
@@ -101,3 +98,6 @@ class TestBoat:
         boat.cross_river()
 
         boat.add_cargo(cargo_item_2)
+        boat.cross_river()
+
+        assert cargo_item_2.is_at(RiverSide.FARM_SIDE)
