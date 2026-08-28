@@ -5,6 +5,12 @@ from fox_goose_corn.src.model.river import RiverSide
 
 class AbstractCargoItem(ABC):
     def __init__(self) -> None:
+        # ABC alone cannot enforce this: a class only becomes uninstantiable once it has
+        # an unimplemented abstract member, and nothing here varies between a fox, a goose
+        # and a bag of corn — they differ by identity alone.
+        if type(self) is AbstractCargoItem:
+            raise TypeError("AbstractCargoItem is abstract — create a Fox, Goose or Corn")
+
         self._current_side: RiverSide = RiverSide.FARM_SIDE
 
     def is_at(self, expected_side: RiverSide) -> bool:

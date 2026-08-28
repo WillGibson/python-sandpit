@@ -1,8 +1,14 @@
-from fox_goose_corn.src.model.cargo_item import Fox
+import pytest
+
+from fox_goose_corn.src.model.cargo_item import AbstractCargoItem, Fox
 from fox_goose_corn.src.model.river import RiverSide
 
 
 class TestCargoItem:
+    def test_an_abstract_cargo_item_cannot_be_created(self):
+        with pytest.raises(TypeError):
+            AbstractCargoItem()
+
     def test_cargo_always_starts_the_day_farm_side(self):
         cargo_item = Fox()
 
