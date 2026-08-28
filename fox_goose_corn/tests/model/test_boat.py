@@ -1,9 +1,9 @@
 import pytest
+from typeguard import TypeCheckError
 
 from fox_goose_corn.src.model.boat import (
     Boat,
     TooManyCargoItemsException,
-    InvalidCargoItemException,
     CargoItemNotAtBoatException,
 )
 from fox_goose_corn.src.model.cargo_item import Fox, Goose, Corn
@@ -48,13 +48,12 @@ class TestBoat:
 
         boat.add_cargo(cargo_item)
 
-    # Not needed if using typechecked
-    # def test_boat_can_only_take_expected_cargo_types(self):
-    #     boat = Boat()
-    #     cargo_item = Boat()
-    #
-    #     with pytest.raises(InvalidCargoItemException):
-    #         boat.add_cargo(cargo_item)
+    def test_boat_can_only_take_expected_cargo_types(self):
+        boat = Boat()
+        not_a_cargo_item = Boat()
+
+        with pytest.raises(TypeCheckError):
+            boat.add_cargo(not_a_cargo_item)
 
     def test_boat_cannot_take_more_than_one_cargo_item(self):
         boat = Boat()

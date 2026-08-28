@@ -1,11 +1,8 @@
 from abc import ABC
 
-from typeguard import typechecked
-
 from fox_goose_corn.src.model.river import RiverSide
 
 
-@typechecked
 class AbstractCargoItem(ABC):
     def __init__(self) -> None:
         self._current_side: RiverSide = RiverSide.FARM_SIDE

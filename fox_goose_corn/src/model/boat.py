@@ -1,12 +1,9 @@
 from typing import Optional
 
-from typeguard import typechecked
-
 from fox_goose_corn.src.model.cargo_item import AbstractCargoItem
 from fox_goose_corn.src.model.river import RiverSide
 
 
-@typechecked
 class Boat:
     def __init__(self) -> None:
         self._current_side: RiverSide = RiverSide.FARM_SIDE
@@ -26,9 +23,6 @@ class Boat:
         return self._current_side is expected_side
 
     def add_cargo(self, cargo_item: AbstractCargoItem):
-        if not isinstance(cargo_item, AbstractCargoItem):
-            raise InvalidCargoItemException
-
         if self._cargo_item is not None:
             raise TooManyCargoItemsException
 
@@ -40,10 +34,6 @@ class Boat:
     def _unload_cargo_item(self):
         self._cargo_item.unload_cargo_item_at(self._current_side)
         self._cargo_item = None
-
-
-class InvalidCargoItemException(Exception):
-    pass
 
 
 class TooManyCargoItemsException(Exception):
