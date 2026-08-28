@@ -13,9 +13,6 @@ class AbstractCargoItem(ABC):
     def unload_cargo_item_at(self, side: RiverSide) -> None:
         self._current_side = side
 
-    def is_on_same_side_as(self, other_cargo_item: "AbstractCargoItem") -> bool:
-        return self._current_side == other_cargo_item._current_side
-
 
 class Fox(AbstractCargoItem):
     pass
